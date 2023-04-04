@@ -60,5 +60,6 @@ BEGIN
 	INSERT INTO cursos(nombrecurso, especialidad, fechainicio, complejidad, precio) 
 	VALUES (nombrecurso_, especialidad_, fechainicio_, complejidad_, precio_);
 END $$
-CALL spu_registrar_cursos('Python','ETI','B','2023-05-10','120');
+CALL spu_registrar_cursos('Python','ETI','B','2023-05-10',120);
+CALL spu_registrar_cursos('C# para la Web','ETI','A','2023-05-11',320);
 CALL spu_curso_listar();
