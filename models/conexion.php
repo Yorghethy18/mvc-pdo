@@ -3,12 +3,12 @@
 class Conexion{
 
   //Atributos
-  private $host = "localhost";         // Servidor
-  private $port = "3306";             // Puerto de comunicación BD
-  private $database = "senati";      // Nombre BD
-  private $charset = "UTF8";        // Codificación (idioma)
-  private $user = "root";          // Usuario (raíz)
-  private $password = "";          // Contraseña
+  private $host       = "localhost";        // Servidor
+  private $port       = "3306";            // Puerto de comunicación BD
+  private $database   = "senati";         // Nombre BD
+  private $charset    = "UTF8";          // Codificación (idioma)
+  private $user       = "root";         // Usuario (raíz)
+  private $password   = "";            // Contraseña
 
   // Atributo (instancia PDO) que almacena la conexión
   private $pdo;
