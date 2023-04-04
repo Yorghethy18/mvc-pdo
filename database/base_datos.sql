@@ -63,3 +63,16 @@ END $$
 CALL spu_registrar_cursos('Python','ETI','B','2023-05-10',120);
 CALL spu_registrar_cursos('C# para la Web','ETI','A','2023-05-11',320);
 CALL spu_curso_listar();
+
+-- ------------------------------------------------------------
+-- PROCEDIMIENTO ALMACENADO PARA ELIMINAR CURSOS (INHABILITARA)
+-- ------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_cursos_eliminar(IN idcurso_ INT)
+BEGIN
+	UPDATE cursos SET estado = '0' 
+	WHERE idcurso = idcurso_;
+END $$
+
+CALL spu_cursos_eliminar(4);
+SELECT * FROM cursos;

@@ -50,9 +50,10 @@ class Curso extends Conexion{
     }
    }
 
-   public function eliminarCurso(){
+   public function eliminarCurso($idcurso = 0){
     try {
-      
+      $consulta = $this->accesoBD->prepare("CALL spu_cursos_eliminar(?)");
+      $consulta->execute(array($idcurso));
     } 
     catch (Exception $e) {
       die($e->getMessage());
