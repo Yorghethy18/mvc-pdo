@@ -19,6 +19,9 @@ if (isset($_SESSION['login']) && $_SESSION['login']){
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
+    <!-- Íconos de Bootstrap-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
 </head>
 
 <body>
@@ -31,6 +34,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']){
           <div class="card-header bg-primary text-light">
            <strong>Inicio de sesión</strong>
           </div>
+          
           <div class="card-body">
             <form action="" autocomplete="off">
               <div class="mb-3">
@@ -43,8 +47,9 @@ if (isset($_SESSION['login']) && $_SESSION['login']){
               </div>
             </form>
           </div>
-          <div class="card-footer text-end">
-            <button type="button" id="iniciar-sesion" class="btn btn-sm btn-success">Iniciar sesión</button>
+          <div class="card-footer text-center">
+            <!--<button type="button" id="crear-usuario" class="btn btn-sm btn-warning">Crear Usaurio</button>-->
+            <button type="button" id="iniciar-sesion" class="btn btn-sm btn-success">Iniciar Sesión</button>
           </div>
         </div>
         <!-- FIN DE CARD-->

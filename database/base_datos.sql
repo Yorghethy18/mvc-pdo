@@ -153,3 +153,95 @@ BEGIN
 	WHERE nombreusuario = nombreusuario_ AND estado = '1';
 END $$
 CALL spu_usuarios_login('YORGHET');
+
+
+
+
+-- ------------------
+-- LISTAR LOS USUARIOS
+-- ------------------
+DELIMITER $$
+CREATE PROCEDURE spu_usuarios_listar()
+BEGIN
+	SELECT 	idusuario,
+				nombreusuario,
+				claveacceso,
+				apellidos,
+				nombres,
+				nivelacceso
+	FROM usuarios
+	WHERE estado = '1'
+	ORDER BY idusuario DESC;
+END $$
+CALL spu_usuarios_listar();
+
+-- ----------------------------------------------
+-- PROCEDIMIENTO ALMACENADO PARA REGISTRAR CURSOS
+-- ----------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_registrar_usuarios(
+IN nombreusuario_ 	VARCHAR(30),
+IN claveacceso_		VARCHAR(90),
+IN apellidos_			VARCHAR(30),
+IN nombres_				VARCHAR(30),
+IN nivelacceso_		CHAR(1)
+)
+BEGIN
+	INSERT INTO usuarios(nombreusuario, claveacceso, apellidos, nombres, nivelacceso) 
+	VALUES (nombreusuario_, claveacceso_, apellidos_, nombres_, nivelacceso_);
+END $$
+CALL spu_registrar_usuarios('JHON','SENATI','Francia Minaya','Jhon','C');
+CALL spu_usuarios_listar();
+
+-- Actualizando clave encriptada
+UPDATE usuarios SET 
+	claveacceso = '$2y$10$N0uA6HK2NR8it5efPsdA1ON9hEc74O4NnuwhqD79D.mfK9DBzXvAu'
+WHERE idusuario = 3;
+
+-- ------------------------------------------------------------
+-- PROCEDIMIENTO ALMACENADO PARA ELIMINAR CURSOS (INHABILITARA)
+-- ------------------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE spu_usuarios_eliminar(IN idusuario_ INT)
+BEGIN
+	UPDATE usuarios SET estado = '0' 
+	WHERE idusuario = idusuario_;
+END $$
+CALL spu_usuarios_eliminar(4);
+SELECT * FROM usuarios;
+
+-- RECUPERAR USUARIOS
+DELIMITER $$
+CREATE PROCEDURE spu_usuarios_recuperar_id(IN idusuario_ INT)
+BEGIN
+	SELECT * FROM usuarios WHERE idusuario = idusuario_;
+END $$
+
+CALL spu_usuarios_recuperar_id(1);
+
+-- USUARIOS ACTUALIZAR
+DELIMITER $$
+CREATE PROCEDURE spu_usuarios_actualizar(
+	IN idusuario_				INT,
+	IN nombreusuario_ 		VARCHAR(30),
+	IN claveacceso_			VARCHAR(90),
+	IN apellidos_				VARCHAR(30),
+	IN nombres_					VARCHAR(30),
+	IN nivelacceso_			CHAR(1)
+)
+BEGIN
+	UPDATE usuarios SET
+	nombreusuario		= nombreusuario_,
+	claveacceso 	= claveacceso_,
+	apellidos		= apellidos_,
+	nombres 			= nombres_,
+	nivelacceso		= nivelacceso_,
+	fechaupdate		= NOW()
+	WHERE idusuario 	= idusuario_;
+END $$
+
+CALL spu_usuarios_actualizar(3,'Jhon123','$2y$10$N0uA6HK2NR8it5efPsdA1ON9hEc74O4NnuwhqD79D.mfK9DBzXvAu','Francia Minaya','Jhon Edwar','A');
+SELECT * FROM usuarios;
+
+
+

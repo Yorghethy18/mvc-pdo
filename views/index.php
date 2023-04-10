@@ -126,9 +126,9 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] == false){
   
   <!-- Optional: Place to the bottom of scripts
   <script>
-    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options) -->
+    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
   
-  </script>
+  </script>-->
   <!-- Fin zona de modales -->
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
