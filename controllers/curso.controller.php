@@ -1,5 +1,5 @@
 <?php
-
+// El controlador recibe un request del modelo para la vista
 require_once '../models/Curso.php';
 
 if(isset($_POST['operacion'])){
@@ -58,6 +58,11 @@ if(isset($_POST['operacion'])){
 
   if($_POST['operacion'] == 'eliminar'){
     $curso->eliminarCurso($_POST['idcurso']);
+  }
+
+  if($_POST['operacion'] == 'obtenercurso'){
+    $registro = $curso->getCurso($_POST['idcurso']);
+    echo json_encode($registro);
   }
 
 }
