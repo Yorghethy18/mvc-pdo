@@ -30,6 +30,7 @@
         </div>
       </div>
       <div class="card-body">
+        <div class="table-responsive">
         <table class="table table-sm table-striped" id="tabla-cursos">
           <colgroup> <!-- Permite ordenar las tablas-->
             <col width = "5%">
@@ -56,6 +57,7 @@
           </tbody>
         </table>
       </div>
+    </div>
       <div class="card-footer text-end">
         <button class="btn btn-primary btn-sm" id="actualizar">Actualizar datos</button>
       </div>
@@ -204,7 +206,30 @@
       }
      });
 
-     $
+     // DETECTAR clic en EDITAR (asíncrono)
+     $("#tabla-cursos tbody").on("click", ".editar", function(){
+      const idcursoeditar = $(this).data("idcurso");
+      $.ajax({
+        url: '../controllers/curso.controller.php',
+        type: 'POST',
+        data: {
+          operacion : 'obtenercurso',
+          idcurso   : idcursoeditar
+        },
+        dataType: 'JSON',
+        success: function(result){
+          console.log(result);
+          
+          //Retornamos los valores a los controles de FORM
+          $("#nombrecurso").val(result["nombrecurso"]);
+          $("#especialidad").val(result["especialidad"]);
+          $("#complejidad").val(result["complejidad"]);
+          $("#fechainicio").val(result["fechainicio"]);
+          $("#precio").val(result["precio"]);
+          $("#modal-registro-cursos").modal("show");
+        }
+      });
+     });
 
       // Ejecución automática
       mostrarCursos();
