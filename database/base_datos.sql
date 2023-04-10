@@ -111,3 +111,23 @@ END $$
 
 CALL spu_cursos_actualizar(3,'Excel para Gestión','Administración','A','2023-07-13',320);
 SELECT * FROM cursos;
+
+
+CREATE TABLE usuarios(
+	idusuario			INT AUTO_INCREMENT 	PRIMARY KEY,
+	nombreusuario		VARCHAR(30) 			NOT NULL,
+	claveacceso			VARCHAR(90) 			NOT NULL,
+	apellidos 			VARCHAR(30) 			NOT NULL,
+	nombres				VARCHAR(30) 			NOT NULL,
+	nivelacceso			CHAR(1) 					NOT NULL DEFAULT 'A',
+	estado 				CHAR(1) 					NOT NULL DEFAULT '1',
+	fecharegistro		DATETIME 				NOT NULL DEFAULT NOW(),
+	fechaupdate 		DATETIME 				NULL,
+	CONSTRAINT uk_nombreusuario_usa UNIQUE(nombreusuario)
+)ENGINE = INNODB;
+
+INSERT INTO usuarios	(nombreusuario, claveacceso, apellidos, nombres) VALUES
+	('YORGHET', '123456', 'Hernandez Yeren', 'Yorghet Fernanda'),
+	('ALONSO', '123456', 'Muñoz Quispe', 'Alonso Enrique');
+	
+SELECT * FROM usuarios;
