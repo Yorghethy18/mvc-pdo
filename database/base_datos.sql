@@ -87,3 +87,27 @@ BEGIN
 END $$
 
 CALL spu_cursos_recuperar_id(3);
+
+-- CURSOS ACTUALIZAR
+DELIMITER $$
+CREATE PROCEDURE spu_cursos_actualizar(
+	IN idcurso_			INT,
+	IN nombrecurso_ 	VARCHAR(50),
+	IN especialidad_	VARCHAR(70),
+	IN complejidad_	CHAR(1),
+	IN fechainicio_	DATE,
+	IN precio_			DECIMAL(7,2)
+)
+BEGIN
+	UPDATE cursos SET
+	nombrecurso		= nombrecurso_,
+	especialidad 	= especialidad_,
+	complejidad		= complejidad_,
+	fechainicio 	= fechainicio_,
+	precio			= precio_,
+	fechaupdate		= NOW()
+	WHERE idcurso 	= idcurso_;
+END $$
+
+CALL spu_cursos_actualizar(3,'Excel para Gestión','Administración','A','2023-07-13',320);
+SELECT * FROM cursos;
