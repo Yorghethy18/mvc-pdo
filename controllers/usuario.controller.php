@@ -40,30 +40,29 @@ if (isset($_POST['operacion'])){
     echo json_encode($resultado);
   }
 
+    // OPERACION listar
+  // OPERACION listar
   if($_POST['operacion'] == 'listar'){
 
-    $datosObtenidos = $curso->listarUsuarios();
-    
-    //En esta ocación NO enviaremos un objeto JSON, en su lugar el controlador redenrizará las filas que necesita <tbody></tbody>
-    //echo json_encode($datosObtenidos);
+    $datosObtenidos = $usuario->listarUsuarios();
 
     // PASO 1: Verificar que el objeto contenga datos
     if($datosObtenidos){
       $numeroFila = 1;
       // PASO 2. Recorrer todo el objeto
-      foreach($datosObtenidos as $usuario){
+      foreach($datosObtenidos as $usuario){ // INICIO DEL FOREACH
         // PASO 3: Ahora construimos las filas
         echo "
           <tr>
             <td>{$numeroFila}</td>
             <td>{$usuario['nombreusuario']}</td>
-            <td>{$usuario['claveacceso']}</td>
             <td>{$usuario['apellidos']}</td>
             <td>{$usuario['nombres']}</td>
             <td>{$usuario['nivelacceso']}</td>
+            <td>{$usuario['fecharegistro']}</td>
             <td>
-            <a href='#' data-idusuario='{$usuario['idusuario']}' class='btn btn-danger btn-sm eliminar'><i class='bi bi-trash3-fill'></i></a>
-                <a href='#' data-idusuario='{$usuario['idusuario']}' class='btn btn-info btn-sm editar'><i class='bi bi-pencil-fill'></i></a>
+                <a href='#' data-idusuario='{$usuario['idusuario']}' class='btn btn-danger btn-sm eliminar'><i class='fa-solid fa-trash-can'></i></a>
+                <a href='#' data-idusuario='{$usuario['idusuario']}' class='btn btn-primary btn-sm editar'><i class='fa-solid fa-pencil'></i></a>
             </td>
           </tr>
         ";
@@ -71,6 +70,45 @@ if (isset($_POST['operacion'])){
       } // FIN DEL FOREACH
     }
 
+  }
+
+  if($_POST['operacion'] == 'registrar'){
+    $datosForm = [
+      'nombreusuario'   => $_POST['nombreusuario'],
+      'claveacceso'     => $_POST['claveacceso'],   
+      'apellidos'       => $_POST['apellidos'],
+      'nombres'         => $_POST['nombres'],
+      'nivelacceso'     => $_POST['nivelacceso'],
+      //'fecharegistro'   => $_POST['fecharegistro']
+    ];
+
+    $usuario->registrarUsuario($datosForm);
+  }
+
+  if($_POST['operacion'] == 'eliminar'){
+    $usuario->eliminarUsuario($_POST['idusuario']);
+  }
+
+  if($_POST['operacion'] == 'obtenerusuario'){
+    $registro = $usuario->getUsuario($_POST['idusuario']);
+    echo json_encode($registro);
+  }
+
+  
+  if($_POST['operacion'] == 'actualizar'){
+    // PAso 1: Recoger los datos que nos envía la vista (FROM, utilizando AJAX)
+    // $_POST: Esto es lo que se nos envía desde FORM
+    $datosForm = [
+      'idusuario'       => $_POST['idusuario'],
+      'nombreusuario'   => $_POST['nombreusuario'],
+      'claveacceso'    => $_POST['claveacceso'],
+      'apellidos'     => $_POST['apellidos'],
+      'nombres'     => $_POST['nombres'],
+      'nivelacceso'          => $_POST['nivelacceso']
+    ];
+
+    // Paso 2: Enviar el arreglo como parámetro del método ACTUALIZAR
+    $usuario->actualizarUsuario($datosForm);
   }
 
   

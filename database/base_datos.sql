@@ -127,8 +127,8 @@ CREATE TABLE usuarios(
 )ENGINE = INNODB;
 
 INSERT INTO usuarios	(nombreusuario, claveacceso, apellidos, nombres) VALUES
-	('YORGHET', '123456', 'Hernandez Yeren', 'Yorghet Fernanda'),
-	('ALONSO', '123456', 'Muñoz Quispe', 'Alonso Enrique');
+	('YORGHET', 'SENATI', 'Hernandez Yeren', 'Yorghet Fernanda'),
+	('ALONSO', 'SENATI', 'Muñoz Quispe', 'Alonso Enrique');
 	
 SELECT * FROM usuarios;
 
@@ -165,10 +165,10 @@ CREATE PROCEDURE spu_usuarios_listar()
 BEGIN
 	SELECT 	idusuario,
 				nombreusuario,
-				claveacceso,
 				apellidos,
 				nombres,
-				nivelacceso
+				nivelacceso,
+				fecharegistro
 	FROM usuarios
 	WHERE estado = '1'
 	ORDER BY idusuario DESC;
@@ -181,16 +181,17 @@ CALL spu_usuarios_listar();
 DELIMITER $$
 CREATE PROCEDURE spu_registrar_usuarios(
 IN nombreusuario_ 	VARCHAR(30),
-IN claveacceso_		VARCHAR(90),
+IN claveacceso_ 		VARCHAR(90),
 IN apellidos_			VARCHAR(30),
 IN nombres_				VARCHAR(30),
 IN nivelacceso_		CHAR(1)
+
 )
 BEGIN
 	INSERT INTO usuarios(nombreusuario, claveacceso, apellidos, nombres, nivelacceso) 
 	VALUES (nombreusuario_, claveacceso_, apellidos_, nombres_, nivelacceso_);
 END $$
-CALL spu_registrar_usuarios('JHON','SENATI','Francia Minaya','Jhon','C');
+CALL spu_registrar_usuarios('KEYSI','123456','NOLBERTO FLORES','Keysi','A');
 CALL spu_usuarios_listar();
 
 -- Actualizando clave encriptada
@@ -207,7 +208,7 @@ BEGIN
 	UPDATE usuarios SET estado = '0' 
 	WHERE idusuario = idusuario_;
 END $$
-CALL spu_usuarios_eliminar(4);
+CALL spu_usuarios_eliminar(2)
 SELECT * FROM usuarios;
 
 -- RECUPERAR USUARIOS

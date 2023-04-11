@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-  <title>USUARIOS PDO</title>
+  <title>USUARIO PDO</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,79 +11,70 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-     <!-- Íconos de Bootstrap-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+     <!-- Íconos de Bootstrap
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"-->
+
+  <!-- ÍCONOS FONTAWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 <div class="container mt-3">
-    <div class="card table-responsive">
+    <div class="card">
       <div class="card-header bg-info text-light">
         <div class="row">
           <div class="col-md-6">
-            <strong>LISTA DE USUARIOS</strong>
+            <strong>LISTADO DE USUARIOS</strong>
           </div>
           <div class="col-md-6 text-end">
-            <button class="btn btn-success btn-sm" id="abrir-modal" data-bs-toggle="modal" data-bs-target="#modal-registro-cursos"><i class="fa-solid fa-folder-plus"></i> Agregar Usuario</button>
+            <button class="btn btn-success btn-sm" id="abrir-modal-usuario" data-bs-toggle="modal" data-bs-target="#modal-registro-usuarios"><i class="fa-solid fa-folder-plus"></i> Registrar Usuario</button>
           </div>
         </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
-        <table class="table table-sm table-striped" id="tabla-cursos">
-          <colgroup> <!-- Permite ordenar las tablas-->
-            <col width = "5%">
+        <table class="table table-sm table-striped" id="tabla-usuarios">
+          <colgroup> <!-- colgroup: Permite ordenar las tablas -->
+            <col width = "3%">
+            <col width = "10%">
             <col width = "30%">
-            <col width = "25%">
-            <col width = "10%">
-            <col width = "10%">
-            <col width = "10%">
-            <col width = "10%">
+            <col width = "15%">
+            <col width = "20%">
+            <col width = "15%">
+            <col width = "50%">
           </colgroup>
           <thead>
             <tr>
               <th>#</th>
-              <th>Nombre Usuario</th>
-              <th>Contraseña</th>
+              <th>Usuario</th>
               <th>Apellidos</th>
               <th>Nombres</th>
               <th>Nivel Acceso</th>
-              <th>Operaciones</th>
+              <th>Fecha Registro</th>
+              <th>Eliminar/Editar</th>
             </tr>
           </thead>
+          <!-- DATOS DE PRUEBA -->
           <tbody>
-            <td>1</td>
-            <td>YORGHET</td>
-            <td>$2y$10$UVumvYTP8aTab4XdFzj.GuSrFri19FfM7pGw3SEh6m1uOeoWwsne6</td>
-            <td>Hernandez Yerén</td>
-            <td>Yorghet Fernanda</td>
-            <td>Administrador</td>
-            <td>
-              <a href="#" data-idusuario="" class="btn btn-danger btn-sm eliminar"><i class='bi bi-trash3-fill'></a>
-              <a href="#" data-idusuario="" class="btn btn-info btn-sm editar"><i class='bi bi-pencil-fill'></a>
-            </td>
-          </tbody>
+          </tbody> <!-- FIN DE DATOS PRUEBA-->
         </table>
       </div>
     </div>
-      <div class="card-footer text-end">
-        <a href="../controllers/usuario.controller.php?operacion=finalizar">Cerrar sesión</a>
-      </div>
+    <div class="card-footer text-end">
+      <a href="../controllers/usuario.controller.php?operacion=finalizar">Cerrar sesión</a>
     </div>
   </div>
+</div> <!-- FIN DEL CONTAINER -->
 
-   <!-- Zona de modales -->
-  
-  <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-  <div class="modal fade" id="modal-registro-usuarios" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+<div class="modal fade" id="modal-registro-usuarios" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header bg-secondary text-light">
-          <h5 class="modal-title" id="modal-titulo">Registro de Usuarios</h5>
+          <h5 class="modal-title" id="modal-titulo">Registrar Usuarios</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="" id="formulario-usuarios" autocomplete="off">
+          <form action="" id="formulario-registro" autocomplete="off">
             <div class="mb-3">
               <label for="nombreusuario" class="form-label">Nombre Usuario</label>
               <input type="text" class="form-control form-control-sm" id="nombreusuario">
@@ -94,7 +85,7 @@
             </div>
             <div class="mb-3">
               <label for="apellidos" class="form-label">Apellidos</label>
-              <input type="text" class="form-control form-control-sm" id="Apellidos">
+              <input type="text" class="form-control form-control-sm" id="apellidos">
             </div>
             <div class="mb-3">
               <label for="nombres" class="form-label">Nombres</label>
@@ -104,22 +95,150 @@
               <label for="nivelacceso" class="form-label">Nivel Acceso</label>
               <select id="nivelacceso" class="form-select form-select-sm">
                 <option value="">Seleccione</option>
-                <option value="A">Administrador</option>
+                <option value="A">Adminsitrador</option>
                 <option value="C">Colaborador</option>
+                <option value="I">Invitado</option>
               </select>
             </div>
+            <!--<div class="mb-3">
+              <label for="fecharegistro" class="form-label">Fecha de registro:</label>
+              <input type="datetime-local" class="form-control form-control-sm" id="fecharegistro">
+            </div>-->
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary btn-sm" id="guardar-curso">Guardar</button>
+          <button type="button" class="btn btn-primary btn-sm" id="guardar-usuario">Guardar</button>
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- Fin zona de modales -->
- 
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+  <!-- jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function (){
+
+      function mostrarUsuarios(){
+        $.ajax({
+          url: '../controllers/usuario.controller.php',
+          type: 'POST',
+          data: {operacion: 'listar'},
+          dataType: 'text',
+          success: function(result){
+            $("#tabla-usuarios tbody").html(result);
+          }
+        });
+      }
+
+      // REGISTRAR
+      function registrarUsuario(){
+        if(confirm("¿Está seguro de registrar este nuevo curso?")){
+          $.ajax({
+            url : '../controllers/usuario.controller.php',
+            type : 'POST',
+            data : {
+              operacion : 'registrar',
+              nombreusuario : $("#nombreusuario").val(),
+              claveacceso : $("#claveacceso").val(),
+              apellidos : $("#apellidos").val(),
+              nombres : $("#nombres").val(),
+              nivelacceso : $("#nivelacceso").val()
+              //fecharegistro : $("#fecharegistro").val()
+            },
+            success: function(result){
+              if (result == ""){
+                $("#formulario-registro")[0].reset();
+
+                mostrarUsuarios();
+
+                $("#modal-registro-usuarios").modal('hide');
+              }
+            }
+          });
+        }
+      }
+
+      // FUNCION DE ABRIR MODAL
+      function abrirModal(){
+        datosNuevos = true;
+        $("#modal-titulo").html("Registro de usuarios");
+        $("#formulario-registro")[0].reset();
+      }
+
+      // Evento
+      $("#guardar-usuario").click(registrarUsuario);
+      $("#abrir-modal-usuario").click(abrirModal);
+
+      
+
+      $("#tabla-usuarios tbody").on("click", ".eliminar", function(){
+        const idusuarioEliminar = $(this).data("idusuario");
+        if (confirm("¿Está seguro de proceder?")){
+          $.ajax({
+            url: '../controllers/usuario.controller.php',
+            type: 'POST',
+            data: {
+              operacion   : 'eliminar',
+              idusuario   : idusuarioEliminar
+            },
+            success: function(result){
+              if(result == ""){
+              mostrarUsuarios();
+              }
+            }
+          });
+        }
+      });
+
+      // DETECTAR clic en EDITAR
+      $("#tabla-usuarios tbody").on("click", ".editar", function(){
+        const idusuarioeditar = $(this).data("idusuario");
+        $.ajax({
+          url : '../controllers/usuario.controller.php',
+          type: 'POST',
+          data : {
+            operacion : 'obtenerusuario',
+            idusuario : idusuarioeditar
+          },
+          dataType: 'JSON',
+          success: function(result){
+            console.log(result);
+
+            // CONFIGURAR BANDERA
+            datosNuevos = false;
+
+            // RETORNANDO
+            $("#nombreusuario").val(result["nombreusuario"]);
+            $("#claveacceso").val(result["claveacceso"]);
+            $("#apellidos").val(result["apellidos"]);
+            $("#nombres").val(result["nombres"]);
+            $("#nivelacceso").val(result["nivelacceso"]);
+
+            // CAMBIAR TÍTULO MODAL
+            $("#modal-titulo").html("Actualizar datos de curso");
+
+            // PONEMOS AL MODAL EN PANTALLA
+            $("#modal-registro-usuarios").modal("show");
+          }
+        });
+      });
+
+
+    // Ejecución automática
+    mostrarUsuarios();
+
+    });
+  </script>
 </body>
 
 </html>
